@@ -2,7 +2,7 @@ try {
     $userPrincipalName = $formInput.selectedUser.UserPrincipalName
     HID-Write-Status -Message "Searching AD user [$userPrincipalName]" -Event Information
      
-    $adUser = Get-ADuser -Filter { UserPrincipalName -eq $userPrincipalName } -Properties * | Select-Object displayname, samaccountname, userPrincipalName, mail, employeeID, Enabled
+    $adUser = Get-ADuser -Filter { UserPrincipalName -eq $userPrincipalName } -Properties displayname, samaccountname, userPrincipalName, mail, employeeID, Enabled | Select-Object displayname, samaccountname, userPrincipalName, mail, employeeID, Enabled
     HID-Write-Status -Message "Finished searching AD user [$userPrincipalName]" -Event Information
      
     foreach($tmp in $adUser.psObject.properties)
