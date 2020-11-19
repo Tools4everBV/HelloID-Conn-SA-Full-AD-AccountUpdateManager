@@ -12,7 +12,7 @@ try {
          
         $ous = $searchOUs | ConvertFrom-Json
         $users = foreach($item in $ous) {
-            Get-ADUser -Filter {Name -like $searchQuery -or DisplayName -like $searchQuery -or userPrincipalName -like $searchQuery -or mail -like $searchQuery} -SearchBase $item.ou -properties *
+            Get-ADUser -Filter {Name -like $searchQuery -or DisplayName -like $searchQuery -or userPrincipalName -like $searchQuery -or mail -like $searchQuery} -SearchBase $item.ou -properties SamAccountName,displayName,UserPrincipalName,Description,Department,Title
         }
          
         $users = $users | Sort-Object -Property DisplayName
