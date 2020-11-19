@@ -128,7 +128,7 @@ try {
          
         $ous = $searchOUs | ConvertFrom-Json
         $users = foreach($item in $ous) {
-            Get-ADUser -Filter {Name -like $searchQuery -or DisplayName -like $searchQuery -or userPrincipalName -like $searchQuery -or email -like $searchQuery} -SearchBase $item.ou -properties *
+            Get-ADUser -Filter {Name -like $searchQuery -or DisplayName -like $searchQuery -or userPrincipalName -like $searchQuery -or mail -like $searchQuery} -SearchBase $item.ou -properties SamAccountName,displayName,UserPrincipalName,Description,Department,Title
         }
          
         $users = $users | Sort-Object -Property DisplayName
@@ -138,7 +138,7 @@ try {
          
         if($resultCount -gt 0){
             foreach($user in $users){
-                $returnObject = @{SamAccountName=$user.SamAccountName; displayName=$user.displayName; UserPrincipalName=$user.UserPrincipalName; Description=$user.Description; Department=$user.Department; Title=$user.Title; Company=$user.company}
+                $returnObject = @{SamAccountName=$user.SamAccountName; displayName=$user.displayName; UserPrincipalName=$user.UserPrincipalName; Description=$user.Description; Department=$user.Department; Title=$user.Title;}
                 Hid-Add-TaskResult -ResultValue $returnObject
             }
         } else {
@@ -227,7 +227,7 @@ try {
     $userPrincipalName = $formInput.selectedUser.UserPrincipalName
     HID-Write-Status -Message "Searching AD user [$userPrincipalName]" -Event Information
      
-    $adUser = Get-ADuser -Filter { UserPrincipalName -eq $userPrincipalName } -Properties * | select displayname, samaccountname, userPrincipalName, mail, employeeID, Enabled
+    $adUser = Get-ADuser -Filter { UserPrincipalName -eq $userPrincipalName } -Properties displayname, samaccountname, userPrincipalName, mail, employeeID, Enabled | Select-Object displayname, samaccountname, userPrincipalName, mail, employeeID, Enabled
     HID-Write-Status -Message "Finished searching AD user [$userPrincipalName]" -Event Information
      
     foreach($tmp in $adUser.psObject.properties)
@@ -328,7 +328,7 @@ try {
      
      
     $allUsers = foreach($group in $groups) {
-        Get-ADGroupMember -identity $group.name | Where objectClass -eq "user"
+        Get-ADGroupMember -identity $group.name | Where-Object objectClass -eq "user"
     }
  
     $allUsersCount = @($allUsers).Count
@@ -339,7 +339,7 @@ try {
       
     if($allUsersCount -gt 0){
         foreach($user in $allUsers){
-            $adUser = Get-ADUser $user -properties *
+            $adUser = Get-ADUser $user -properties SamAccountName,displayName,UserPrincipalName,Description,Department,Title,DistinguishedName
              
             $returnObject = @{
                 SamAccountName = $adUser.SamAccountName;
