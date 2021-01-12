@@ -47,4 +47,4 @@ This Powershell data source runs an Active Directory query to select a basic lis
 This Powershell data source runs an Active Directory query to select all members of specified AD groups. It uses an array of Active Directory groups specified as HelloID user defined variable named _"ADmanagerGroups"_ to specify the search scope.
 
 ### Delegated form task 'AD-user-update-manager'
-This delegated form task will update the account attribute manager with the selected manager.
+This delegated form task will update the account attribute manager with the selected manager. 
