@@ -1,6 +1,7 @@
 try {
     $userUPN = $datasource.selectedUser.UserPrincipalName
     
+    $currentManager = ""
     if([String]::IsNullOrEmpty($userUPN) -eq $false){
         $selectedUser = Get-ADuser -Filter { UserPrincipalName -eq $userUPN } -Properties manager
         $currentManager = $selectedUser.Manager
