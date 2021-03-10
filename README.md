@@ -37,13 +37,13 @@ After the all-in-one PowerShell script has run and created all the required reso
 ## Manual resources
 This Delegated Form uses the following resources in order to run
 
-### Powershell data source 'AD-user-generate-table-wildcard'
+### Powershell data source 'AD-user-generate-table-wildcard-update-manager'
 This Powershell data source runs an Active Directory query to search for matching AD user accounts. It uses an array of Active Directory OU's specified as HelloID user defined variable named _"ADusersSearchOU"_ to specify the search scope.
 
-### Powershell data source 'AD-user-generate-table-attributes-basic'
+### Powershell data source 'AD-user-generate-table-attributes-basic-update-manager'
 This Powershell data source runs an Active Directory query to select a basic list of user attributes of the selected AD user account.  
 
-### Powershell data source 'AD-user-generate-table-managers'
+### Powershell data source 'AD-user-generate-table-managers-update-manager'
 This Powershell data source runs an Active Directory query to select all members of specified AD groups. It uses an array of Active Directory groups specified as HelloID user defined variable named _"ADmanagerGroups"_ to specify the search scope.
 
 ### Delegated form task 'AD-user-update-manager'
