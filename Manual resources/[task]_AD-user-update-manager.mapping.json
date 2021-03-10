@@ -1,0 +1,10 @@
+[
+    {
+        "name":  "userPrincipalName",
+        "value":  "{{form.gridUsers.UserPrincipalName}}"
+    },
+    {
+        "name":  "userPrincipalNameManager",
+        "value":  "{{form.managerSelected.UserPrincipalName}}"
+    }
+]
