@@ -48,3 +48,6 @@ This Powershell data source runs an Active Directory query to select all members
 
 ### Delegated form task 'AD-user-update-manager'
 This delegated form task will update the account attribute manager with the selected manager. 
+
+# HelloID Docs
+The official HelloID documentation can be found at: https://docs.helloid.com/
