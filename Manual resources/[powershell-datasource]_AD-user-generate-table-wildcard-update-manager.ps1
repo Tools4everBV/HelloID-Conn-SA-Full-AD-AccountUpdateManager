@@ -2,8 +2,7 @@ try {
     $searchValue = $dataSource.searchUser
     $searchQuery = "*$searchValue*"
     $searchOUs = $ADusersSearchOU
-     
-     
+    
     if([String]::IsNullOrEmpty($searchValue) -eq $true){
         return
     }else{
